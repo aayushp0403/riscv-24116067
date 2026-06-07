@@ -1,0 +1,5 @@
+*.vcd
+*.lxt
+riscv_sim
+a.out
+*.log
