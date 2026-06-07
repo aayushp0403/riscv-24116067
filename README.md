@@ -1,11 +1,5 @@
 # RV32I Processor — 24116067
 
-> **Note:** The assignment brief says "single-cycle" but this implementation is actually **multi-cycle** (4-state FSM). Single-cycle wouldn't handle the unified memory interface with `mem_rbusy`/`mem_wbusy` signals cleanly, so this ended up being the more correct approach anyway.
-
-Implements the full RV32I base ISA except `ecall` and `ebreak`. Passed 19/20 tests on the extended testbench.
-
----
-
 ## Files
 
 | File | What it does |
@@ -90,13 +84,6 @@ Score: 100%
 - `auipc` sets `pc_taken=1` and `immed_taken=1` so the ALU gets `PC + (imm << 12)` directly.
 - The LSU pre-shifts store data and generates byte masks — memory model only needs to apply the mask, no byte-lane logic in the top module.
 
-## Known limitations
-
-- `mem_rbusy` / `mem_wbusy` are wired but the FSM doesn't stall on them (assumes 1-cycle memory response)
-- No pipeline hazard handling (not needed — each instruction completes before the next fetch)
-- No CSR, no interrupts, no privileged ISA
-
 ---
 
 *Verilog Project 2026 — Roll No. 24116067*
-EOF
